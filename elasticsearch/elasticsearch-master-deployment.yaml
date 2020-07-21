@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
       - name: elasticsearch-master
-        image: dcsartifacts.dell.com/docker/elasticsearch/elasticsearch:7.7.0
+        image: <image URL>
         env:
         - name: CLUSTER_NAME
           value: elasticsearch
