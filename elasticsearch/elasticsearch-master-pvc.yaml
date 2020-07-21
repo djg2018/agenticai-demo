@@ -1,0 +1,12 @@
+kind: PersistentVolumeClaim
+apiVersion: v1'
+metadata:
+  name: elasticsearch-master-claim
+  annonations:
+    volume.beta.kubernetes.io/storage-class: mytest-storage
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 2Gi
