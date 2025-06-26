@@ -19,7 +19,7 @@ jobs:
           username: ${{ secrets.GCE_VM_USER }}
           key: ${{ secrets.GCE_SSH_KEY }}
           script: |
-            cd ~/agenticai-demo || exit 1
+            cd ~/AgenticAI || exit 1
             git pull origin master
             npm install
             pkill node || true
