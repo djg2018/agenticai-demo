@@ -43,7 +43,7 @@ jobs:
               export AGENTIC_AI_ENABLED=true
               export AUTO_FIX_ENABLED=true
               export PYTHONPATH=$PYTHONPATH:$(pwd)
-              python3 AgenticAI/agentic_ai_runner.py
+              python3 agentic_ai_runner.py
 
               echo "🔁 Rechecking logs..."
               pkill node || true
