@@ -19,44 +19,44 @@ jobs:
           username: ${{ secrets.GCE_VM_USER }}
           key: ${{ secrets.GCE_SSH_KEY }}
            script: |
-                cd ~/agenticai-demo || exit 1
-                git pull origin master
-                npm install
-                pkill node || true
-                
-                # Start app in background and ensure output is logged
-                nohup node app.js > app.log 2>&1 &
-                
-                # Wait briefly to let app start and log flush
-                sleep 5
-                
-                # Debug log contents
-                echo "===== APP LOG CONTENTS ====="
-                cat app.log || echo "⚠️ app.log not found"
-                echo "============================"
-                
-                # Check for failure
-                if [ -f app.log ] && grep -qi "error" app.log; then
-                  echo "🚨 App failed to start."
-          
-                  echo "🤖 Running Agentic AI recovery..."
-                  export AGENTIC_AI_ENABLED=true
-                  export AUTO_FIX_ENABLED=true
-                  export PYTHONPATH=$PYTHONPATH:$(pwd)
-                  python3 AgenticAI/agentic_ai_runner.py
-          
-                  echo "🔁 Rechecking logs..."
-                  pkill node || true
-                  sleep 1
-                  nohup node app.js > app.log 2>&1 &
-                  sleep 5
-          
-                  if grep -qi "error" app.log; then
-                    echo "❌ Agentic AI failed to recover the app."
-                    exit 1
-                  else
-                    echo "✅ Agentic AI successfully recovered the app."
-                  fi
-                else
-                  echo "✅ App started successfully."
-                fi
+             cd ~/agenticai-demo || exit 1
+             git pull origin master
+             npm install
+             pkill node || true
+            
+             # Start app in background and ensure output is logged
+             nohup node app.js > app.log 2>&1 &
+            
+             # Wait briefly to let app start and log flush
+             sleep 5
+            
+             # Debug log contents
+             echo "===== APP LOG CONTENTS ====="
+             cat app.log || echo "⚠️ app.log not found"
+             echo "============================"
+            
+             # Check for failure
+             if [ -f app.log ] && grep -qi "error" app.log; then
+               echo "🚨 App failed to start."
+      
+               echo "🤖 Running Agentic AI recovery..."
+               export AGENTIC_AI_ENABLED=true
+               export AUTO_FIX_ENABLED=true
+               export PYTHONPATH=$PYTHONPATH:$(pwd)
+               python3 AgenticAI/agentic_ai_runner.py
+       
+               echo "🔁 Rechecking logs..."
+               pkill node || true
+               sleep 1
+               nohup node app.js > app.log 2>&1 &
+               sleep 5
+      
+               if grep -qi "error" app.log; then
+                 echo "❌ Agentic AI failed to recover the app."
+                 exit 1
+               else
+                 echo "✅ Agentic AI successfully recovered the app."
+               fi
+             else
+               echo "✅ App started successfully."
+             fi
