@@ -1,7 +1,7 @@
 import os
-from AgenticAI.log_triage_agent import triage
-from AgenticAI.fix_suggestion_agent import suggest_fix
-from AgenticAI.auto_fix_agent import apply_fix_to_file
+from log_triage_agent import triage
+from fix_suggestion_agent import suggest_fix
+from auto_fix_agent import apply_fix_to_file
 
 LOG_FILE = "app.log"
 APP_FILE = "app.js"
